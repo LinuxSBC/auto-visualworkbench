@@ -40,6 +40,10 @@ public class CraftingTableBlockEntity extends BaseContainerBlockEntity {
     public CraftingTableBlockEntity(BlockPos pos, BlockState state) {
         super(ModRegistry.CRAFTING_TABLE_BLOCK_ENTITY.get(), pos, state);
     }
+    
+    public NonNullList<ItemStack> getInventory() {
+        return inventory;
+    }
 
     @Override
     protected Component getDefaultName() {

@@ -103,4 +103,21 @@ public abstract class CraftingTableBlockMixin extends Block implements EntityBlo
             callbackInfo.setReturnValue(blockEntity);
         }
     }
+    
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
+        if (world.getBlockEntity(pos) instanceof CraftingTableBlockEntity table) {
+            int stacks = 0;
+            for (ItemStack stack : table.getInventory()) {
+                if (!stack.isEmpty()) stacks++;
+            }
+            return stacks;
+        }
+        return 0;
+    }
 }
